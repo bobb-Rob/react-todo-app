@@ -5,10 +5,17 @@ import { Component } from 'react';
 
 class TodosList extends Component {
   render() {
+    const { todos, handleChangeProps } = this.props;
+
     return (
       <ul>
-        {this.props.todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} />
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            handleChangeProps = {handleChangeProps}
+            deleteTodoProps={this.props.deleteTodoProps}
+          />
         ))}
       </ul>
     );

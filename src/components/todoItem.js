@@ -3,9 +3,19 @@ import React from 'react';
 
 class TodoItem extends React.Component {
   render() {
-    const {todo } = this.props;
+    const { todo, handleChangeProps, deleteTodoProps } = this.props;
     return (
-      <li>{todo.title}</li>
+      <li>
+        <input 
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => handleChangeProps(todo.id)}
+        />
+        {todo.title}
+        <button
+        onClick={() => deleteTodoProps(todo.id)}
+        >Delete</button>
+      </li>
     );
   }
 }
