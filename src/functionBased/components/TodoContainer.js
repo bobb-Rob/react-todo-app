@@ -49,7 +49,6 @@ const TodoContainer = () => {
           })
         )
       }
-
       
       useEffect(() => {
         // storing todos items
