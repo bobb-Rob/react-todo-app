@@ -6,7 +6,7 @@ import InputTodo from './inputTodo';
 import { v4 as uuidv4 } from "uuid";
 
 const TodoContainer = () => {
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(getInitialTodos())
     
       const handleChange = (id) => {
         setTodos((prevState) => 
@@ -30,7 +30,7 @@ const TodoContainer = () => {
         ])
        };
 
-     const addTodoItem = title => {
+     const addTodoItem = (title) => {
         const newTodo = {
           id: uuidv4(),
           title: title,
@@ -48,28 +48,24 @@ const TodoContainer = () => {
             return todo
           })
         )
+      }       
+
+      function getInitialTodos() {
+        // getting stored items
+        const temp = localStorage.getItem("todos")
+        const savedTodos = JSON.parse(temp)
+        return savedTodos || []
       }
-      
+
       useEffect(() => {
+        console.log("todos updated")
         // storing todos items
         const temp = JSON.stringify(todos)
         localStorage.setItem("todos", temp)
-        console.log('updated')
-      }, [todos])     
-
-      useEffect(() => {
-        console.log("test run")
-      
-        // getting stored items
-        const temp = localStorage.getItem("todos")
-        const loadedTodos = JSON.parse(temp)
-      
-        if (loadedTodos) {
-          setTodos(loadedTodos)
-        }
-      }, [setTodos])
-
+      }, [todos])
    
+      console.log(todos)
+
     return (
     <div className="container">
       <div className="inner">

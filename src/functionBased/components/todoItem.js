@@ -1,33 +1,22 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "./TodoItem.module.css"
 
-class TodoItem extends React.Component {
-    state = {
-        editing: false,
+const TodoItem = (props) => {
+  const [editing, setEditing] = useState(false);
+
+  const handleEditing = () => {
+    setEditing(true)
+  }
+
+  const handleUpdatedDone = event => {
+    if (event.key === "Enter") {
+      setEditing(false)
     }
-
-    handleEditing = () => {
-        console.log("edit mode activated")
-        this.setState({
-            editing: true,
-          })
-    }
-
-    handleUpdatedDone = event => {
-        if (event.key === "Enter") {
-            this.setState({ editing: false })
-        }
-    }
-
-    componentWillUnmount() {
-        console.log("Cleaning up...")
-    }
-
-
-  render() {
-    const { handleChangeProps, deleteTodoProps, setUpdate } = this.props;
-    const { id, completed, title } = this.props.todo;
+  }
+ 
+    const { handleChangeProps, deleteTodoProps, setUpdate } = props;
+    const { id, completed, title } = props.todo;
 
     const completedStyle = {
         fontStyle: "italic",
@@ -39,15 +28,21 @@ class TodoItem extends React.Component {
     let viewMode = {}
     let editMode = {}
 
-    if (this.state.editing) {
+    if (editing) {
     viewMode.display = "none"
     } else {
     editMode.display = "none"
     }
 
+    useEffect(() => {
+      return () => {
+        console.log("Cleaning up...")
+      }
+    }, [])
+
     return (
       <li className={styles.item}>
-        <div onDoubleClick={this.handleEditing} style={viewMode}>
+        <div onDoubleClick={handleEditing} style={viewMode}>
             <input 
             type="checkbox"
             className={styles.checkbox}
@@ -71,11 +66,11 @@ class TodoItem extends React.Component {
           onChange={e => {
            setUpdate(e.target.value, id)
           }}
-          onKeyDown={this.handleUpdatedDone}
+          onKeyDown={handleUpdatedDone}
         />
       </li>
     );
   }
-}
+
 
 export default TodoItem;

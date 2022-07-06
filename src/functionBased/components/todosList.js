@@ -3,9 +3,9 @@ import TodoItem from './todoItem';
 
 import { Component } from 'react';
 
-class TodosList extends Component {
-  render() {
-    const { todos, handleChangeProps, deleteTodoProps, setUpdate } = this.props;
+const TodosList = (props) => {
+ 
+    const { todos, handleChangeProps, deleteTodoProps, setUpdate } = props;
 
     return (
       <ul>
@@ -21,6 +21,6 @@ class TodosList extends Component {
       </ul>
     );
   }
-}
+
 
 export default TodosList;
