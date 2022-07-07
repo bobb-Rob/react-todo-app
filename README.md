@@ -22,6 +22,12 @@
 
 To get a local copy up and running follow these simple example steps.
 
+## Live link 🙌
+
+[Demo link](https://math-magicians-29.herokuapp.com/)
+
+To get a local copy up and running follow these simple example steps.
+
 ### Prerequisites
 ```
   node js
@@ -52,7 +58,7 @@ Run
 ```
 
 ### Deployment
-- [Visit Application Homepage](http://localhost:3000)
+- [Visit Application Homepage](https://math-magicians-29.herokuapp.com/)
 
 
 ### Authors
