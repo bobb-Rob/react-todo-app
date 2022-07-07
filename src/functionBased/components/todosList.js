@@ -11,9 +11,9 @@ const TodosList = (props) => {
       <ul>
         {todos.map((todo) => (
           <TodoItem
-            key={todo.id}
-            todo={todo}
-            handleChangeProps = {handleChangeProps}
+            key={ todo.id }
+            todo={ todo }
+            handleChangeProps = { handleChangeProps }
             deleteTodoProps={ deleteTodoProps }
             setUpdate={ setUpdate }
           />
